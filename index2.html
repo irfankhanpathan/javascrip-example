@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. Write a JavaScript function to get the current date.
+
+      // Note : Pass a separator as an argument.
+      // Test Data :
+      // console.log(getDate('/'));
+      // console.log(getDate('-'));
+      // Output :
+      // "11/13/2014"
+      // "11-13-2014"
+
+      // let date = "11/13/2014";
+      // let a = date.split("");
+      // let b = a.splice('')
+      // console.log();
+
+      let curday = function (sp) {
+        today = new Date();
+        let dd = today.getDate();
+        let mm = today.getMonth() + 1; //As January is 0.
+        let yyyy = today.getFullYear();
+
+        if (dd < 10) dd = "0" + dd;
+        if (mm < 10) mm = "0" + mm;
+        return mm + sp + dd + sp + yyyy;
+      };
+      console.log(curday("/"));
+      console.log(curday("-"));
+      ///////////////////////////////////////////////////
+
+      // 2. Write a JavaScript function to get the number of days in a month. Go to the editor
+
+      // Test Data :
+      // console.log(getDaysInMonth(1, 2012));
+      // console.log(getDaysInMonth(2, 2012));
+      // console.log(getDaysInMonth(9, 2012));
+      // console.log(getDaysInMonth(12, 2012));
+      // Output :
+      // 31
+      // 29
+      // 30
+      // 31
+
+      var getDaysInMonth = function (month, year) {
+        // Here January is 1 based
+        //Day 0 is the last day in the previous month
+        return new Date(year, month, 0).getDate();
+        // Here January is 0 based
+        // return new Date(year, month+1, 0).getDate();
+      };
+      console.log(getDaysInMonth(1, 2012));
+      console.log(getDaysInMonth(2, 2012));
+      console.log(getDaysInMonth(9, 2012));
+      console.log(getDaysInMonth(12, 2012));
+
+      /////////////////////////////////////////////////////////////////////////////////////
+
+      // 3. Write a JavaScript function to get the month name from a particular date.
+
+      // Test Data :
+      // console.log(month_name(new Date("10/11/2009")));
+      // console.log(month_name(new Date("11/13/2014")));
+      // Output :
+      // "October"
+      // "November"
+      var month_name = function (dt) {
+        mlist = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        return mlist[dt.getMonth()];
+      };
+      console.log(month_name(new Date("10/11/2009")));
+      console.log(month_name(new Date("11/13/2014")));
+
+      // 4. Write a JavaScript function to test whether a date is a weekend.
+
+      // Note : Use standard Saturday/Sunday definition of a weekend.
+      // Test Data :
+      // console.log(is_weekend('Nov 15, 2014'));
+      // console.log(is_weekend('Nov 16, 2014'));
+      // console.log(is_weekend('Nov 17, 2014'));
+      // Output :
+      // "weekend"
+      // "weekend"
+      // "weekday"
+      var is_weekend = function (date1) {
+        var dt = new Date(date1);
+
+        if (dt.getDay() == 6 || dt.getDay() == 0) {
+          return "weekend";
+        }
+      };
+
+      console.log(is_weekend("Nov 15, 2014"));
+      console.log(is_weekend("Nov 16, 2014"));
+      console.log(is_weekend("Nov 17, 2014"));
+
+      //////////////////////////////////////////////////////////////////
+
+      // 5. Write a JavaScript function to get difference between two dates in days.
+
+      // Test Data :
+      // console.log(date_diff_indays('04/02/2014', '11/04/2014'));
+      // console.log(date_diff_indays('12/02/2014', '11/04/2014'));
+      // Output :
+      // 216
+      // 28
+
+      var date_diff_indays = function (date1, date2) {
+        dt1 = new Date(date1);
+        dt2 = new Date(date2);
+        return Math.floor(
+          (Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) -
+            Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) /
+            (1000 * 60 * 60 * 24)
+        );
+      };
+      console.log(date_diff_indays("04/02/2014", "11/04/2014"));
+      console.log(date_diff_indays("12/02/2014", "11/04/2014"));
+    </script>
+  </body>
+</html>
